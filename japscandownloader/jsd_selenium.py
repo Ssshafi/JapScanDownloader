@@ -37,6 +37,9 @@ def process_browser_log_entry(entry):
 
 DEFAULT_CONFIG_FILE = os.path.join(".", "config.yml")
 DEFAULT_DESTINATION_PATH = os.path.join(".", "mangas")
+DEFAULT_DRIVER_PATH = os.path.join(".", "chromedriver.exe")
+DEFAULT_WINDOW_SIZE = "1440,2560"
+DEFAULT_PROFILE = None
 DEFAULT_format = "jpg"
 
 
@@ -44,12 +47,14 @@ class JapScanDownloader:
     def __init__(self):
         self.config_file = DEFAULT_CONFIG_FILE
         self.destination_path = DEFAULT_DESTINATION_PATH
+        self.driver_path = DEFAULT_DRIVER_PATH
+        self.window_size = DEFAULT_WINDOW_SIZE
         self.keep = False
         self.reverse = False
         self.format = DEFAULT_format
         self.mangas = []
         self.driver = None
-        self.profile = None
+        self.profile = DEFAULT_PROFILE
         self.show = False
 
     def init(self, arguments):
@@ -70,20 +75,16 @@ class JapScanDownloader:
         options.add_argument("--log-level=3")
         options.add_argument("--disable-blink-features")
         options.add_argument("--disable-blink-features=AutomationControlled")
-        options.add_argument("window-size=1080,1920")
-        options.add_argument("--profile-directory=Default")
+        options.add_argument("window-size=" + self.window_size)
 
         if self.profile is not None:
             options.add_argument(f"user-data-dir={self.profile}")
 
-        # options.add_argument("window-size=1440,2560")
+        #options.add_argument("window-size=1440,2560")
         if not self.show:
             options.add_argument("--headless")
 
         options.add_experimental_option("excludeSwitches", ["enable-logging"])
-        options.add_experimental_option("useAutomationExtension", False)
-        options.add_experimental_option("excludeSwitches", ["enable-automation"])
-
         caps = DesiredCapabilities.CHROME
         caps["goog:loggingPrefs"] = {"performance": "ALL"}
 
@@ -149,6 +150,15 @@ class JapScanDownloader:
 
         if self.destination_path == DEFAULT_DESTINATION_PATH:
             self.destination_path = config["destination_path"]
+
+        if self.driver_path == DEFAULT_DRIVER_PATH:
+            self.driver_path = config["driver_path"]
+
+        if self.window_size == DEFAULT_WINDOW_SIZE:
+            self.window_size = config["window_size"]
+
+        if self.profile == DEFAULT_PROFILE:
+            self.profile = config["profile"]
 
         if self.format == DEFAULT_format:
             self.format = config["format"]
