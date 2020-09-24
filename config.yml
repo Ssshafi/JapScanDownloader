@@ -1,5 +1,14 @@
-# Directory to downlod the mangas to
-destination_path: ./mangas/
+# Directory to downlod the mangas to. Ex: C:\mangas
+destination_path: d:\mangas
+
+# Chrome web driver path. Ex: C:\chromedriver.exe
+driver_path: d:\mangas\chromedriver.exe
+
+window_size: 1440,2560
+
+# Chrome profile pathExample with Windows. Ex: C:\Users\Me\AppData\Local\Google\Chrome\User Data
+# Default : null
+profile: null
 
 # Supported format
 # - jpg/png: Download image files
@@ -8,13 +17,14 @@ destination_path: ./mangas/
 format: jpg
 
 mangas:
-  - manga: https://www.japscan.se/manga/oggy-et-les-cafards/
+  # Download an entire manga
+  - manga: https://www.japscan.se/manga/one-piece/
 
   # Download a specific chapter
-  - chapter: https://www.japscan.se/lecture-en-ligne/one-piece/957/
+  #- chapter: https://www.japscan.co/lecture-en-ligne/one-piece/957/
 
   # Download contiguous chapters
-  - chapters:
-      manga: https://www.japscan.se/lecture-en-ligne/black-clover/
-      min: 158
-      max: 161
+  #- chapters:
+  #  manga: https://www.japscan.co/lecture-en-ligne/black-clover/
+  #  min: 158
+  #  max: 161
