@@ -16,7 +16,7 @@ $ pip install japscandownloader
 OR
 
 ```console
-$ git clone https://github.com/Harkame/JapScanDownloader.git
+$ git clone https://github.com/Sshafi/JapScanDownloader.git
 $ cd JapScanDownloader
 $ python setup.py install
 ```
