@@ -10,7 +10,7 @@ setup(
     description="Script to download mangas from JapScan",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Harkame/JapScanDownloader",
+    url="https://github.com/Ssshafi/JapScanDownloader",
     packages=find_packages(),
     classifiers=["Programming Language :: Python",],
     install_requires=[
